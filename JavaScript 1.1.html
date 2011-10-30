@@ -1,0 +1,290 @@
+<html>
+    <head>
+        <title>Test Netscape page</title>
+        <script type="text/javascript1.1" src="./scripts/javascript-1.1-wrapper.js"></script>
+        <script type="text/javascript">
+            var jsver = 1.0;
+        </script>
+        <script language="Javascript1.1">
+            jsver = 1.1;
+        </script>
+        <script language="Javascript1.2">
+            jsver = 1.2;
+        </script>
+        <script language="Javascript1.3">
+            jsver = 1.3;
+        </script>
+        <script language="Javascript1.4">
+            jsver = 1.4;
+        </script>
+        <script language="Javascript1.5">
+            jsver = 1.5;
+        </script>
+        <script language="Javascript1.6">
+            jsver = 1.6;
+        </script>
+        <script language="Javascript1.7">
+            jsver = 1.7;
+        </script>
+        <script language="Javascript1.8">
+            jsver = 1.8;
+        </script>
+        <script language="Javascript1.9">
+            jsver = 1.8;
+        </script>
+        <script language="Javascript2.0">
+            jsver = 2.0;
+        </script>
+        <script type="text/javascript">
+            document.write('<p><b>Javascript version ' + jsver
+            + ' supported<\/b><\/p>');
+        </script>
+    </head>
+    <body>
+        <h1>Should be a test for Javascript 1.1</h1>
+        <script type="text/javascript1.1">
+			function raise() {
+				println(arguments[0]);
+			}
+			raise('Test');
+            function println(string) {
+                if (!string) {
+                    document.write('"undefined"' + '<br>');
+                }
+                else {
+                    document.write(string + '<br>');
+                }
+            }
+            
+            function printPr(string) {
+                println('<b>'+string+'<\/b>');
+            }
+            
+            function assertEqual(first, second, msg) {
+                if (first != second) {
+                    if (msg) {
+                        println('<i>'+msg+'<\/i>');
+                    }
+                    else {
+                        println('<i>Jopa.<\/i>');
+                    }
+                }
+            }
+            
+            function assertTrue(expr, msg) {
+                if (!expr) {
+                    if (msg) {
+                        println('<i>'+msg+'<\/i>');
+                    }
+                    else {
+                        println('<i>Jopa.<\/i>');
+                    }
+                }
+            }
+
+            // Has no ids!!!
+            // alert(document.ids);
+
+            // document.body = 'test';
+            // alert(document.body);
+            // function foc() {
+            //  alert('Focus.');
+            // }
+            // document.onFocus = foc();
+            // alert(window.location.hash);
+
+            // function cl() {
+            //  alert('Click.');
+            // }
+            //
+            // document.links[0].onFocus = cl;
+            // document.onClick = cl;
+
+
+            /*
+                DOM
+            */
+            function DOMTest() {
+                println('<h2>DOM tests:<\/h2>');
+                // document.createElement('div');
+                
+                document.getElementById('jopa');
+
+                document.open('text/html');
+                document.writeln('<html>');
+                document.writeln('<body>');
+                document.writeln('Test');
+                document.writeln('</body>');
+                document.writeln('</html>');
+                document.close();
+            }
+
+            /**===============================
+             * Tests
+             */
+
+            /*
+                Methods
+            */
+
+            // throwThis(42);
+
+            /*
+                Function
+            */
+            function funcApplyTest() {
+                println(this);
+            }
+            function FunctionTest() {
+                println('<h2>Function tests:<\/h2>');
+
+                funcApplyTest.apply('string', 'test');
+            }
+
+
+
+            /*
+                Object
+            */
+            function ObjectTest() {
+                println('<h2>Object tests:<\/h2>');
+
+                var ha = new Object();
+                ha.test = 'a';
+
+                printPr('Has own property:');
+                println(ha.hasOwnProperty('test'));
+            }
+
+            /*
+                String
+            */
+            function StringTest() {
+                println('<h2>String tests:<\/h2>');
+                
+                printPr('substr');
+                var test = 'test';
+                println(test.substr(0, 2));
+                test = null;
+            }
+
+            /*
+                Array
+            */
+            
+            function arrayProperiesTest(arr) {
+                println('<h3>Properties:<\/h3>');
+                
+                printPr('constructor:');
+                println(arr.constructor);
+                
+                printPr('index:');
+                println(arr.index);
+                
+                printPr('input:');
+                println(arr.input);
+                
+                printPr('length:');
+                println(arr.length);
+            }
+
+			function someFilter(element, index, array) {
+			  return element >= 10;
+			}
+            
+            function arrayMethodsTest(arr) {
+                println('<h3>Methods:<\/h3>');
+                var result = null;
+                var tmp = null;
+                
+                println('<b>Pushing "fest":<\/b>');
+                tmp = new Array('test', 'rest', 'best', 'fest');
+                result = arr.push('fest');
+                // assertEqual(tmp, arr);
+                println(arr);
+                
+                println('<b>Pushing "dress","mess":<\/b>');
+                result = arr.push('dress','mess');
+                // assertEqual(tmp, arr);
+                println(arr);
+
+                println('<b>Pop:<\/b>');
+                tmp = new Array('test', 'rest', 'best');
+                result = arr.pop();
+                println('popped:'+ result);
+                // assertEqual(tmp, arr);
+                println(arr);
+
+                println('<b>Shift:<\/b>');
+                result = arr.shift()
+                println('shifted:' + result);
+                println(arr);
+
+                println('<b>Unshift:<\/b>');
+                arr.unshift('tvas', 'asdf');
+                println(arr);
+				
+				println('<b>Splice:<\/b>');
+                // arr.splice();
+                println(arr.splice(1, 2, 'ccd', 'dc', 'pp'));//["asdf", "rest"]
+                println(arr);// ["tvas", "ccd", "dc", "pp", "rest", "best", "fest"]
+				
+				println('<b>Concat:<\/b>');
+                println(arr.concat('lo', new Array('li', 'la')));//["tvas", "ccd", "dc", "pp", "rest", "best", "fest", "lo", "li", "la"]
+                println(arr);
+
+				println('<b>Reverse:<\/b>');
+                arr = arr.reverse();
+                println(arr);
+
+				println('<b>IndexOf:<\/b>(ccd)');
+                println(arr.indexOf('ccd'));
+
+				println('<b>LastIndexOf:<\/b>(ccd)');
+				arr.push('ccd')
+				println(arr);
+                println(arr.lastIndexOf('ccd'));
+
+				println('<b>Filter:<\/b>');
+				arr = new Array(12, 5, 8, 130, 44);
+				println(arr);
+				
+				println(arr.filter(someFilter));
+				// filtered is [12, 130, 44]
+            }
+            
+            function ArrayTest() {
+                println('<h2>Array tests:<\/h2>');
+                
+                var arr = new Array('test', 'rest', 'best');
+                printPr('Created:');
+                println(arr);
+                
+                arrayProperiesTest(arr);
+                arrayMethodsTest(arr);
+            }
+
+            /*
+                Error
+            */
+            function ErrorTest() {
+                var err = new Error();
+            }
+
+            function runTests() {
+                // DOMTest();
+                // FunctionTest();
+                ObjectTest();
+                StringTest();
+                ArrayTest();
+                ErrorTest();
+                
+                // var el = document.createElement('a');
+            }
+
+            runTests();
+
+            alert(document.body);
+        </script>
+    </body>
+</html>
